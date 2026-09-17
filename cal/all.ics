@@ -1,0 +1,58 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TBRe//Join//EN
+BEGIN:VEVENT
+UID:tbre-intro-2026-v3@teambathracingelectric.com
+DTSTAMP:20261001T171500Z
+DTSTART:20261001T171500Z
+DTEND:20261001T181500Z
+SUMMARY:TBRe Intro Talk
+LOCATION:CB 1.10, Chancellors' Building
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+BEGIN:VEVENT
+UID:tbre-taster-0-2026-v2@teambathracingelectric.com
+DTSTAMP:20261006T151500Z
+DTSTART:20261006T151500Z
+DTEND:20261006T161500Z
+SUMMARY:TBRe taster: Electrical
+LOCATION:2E 3.1
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+BEGIN:VEVENT
+UID:tbre-taster-1-2026-v2@teambathracingelectric.com
+DTSTAMP:20261006T161500Z
+DTSTART:20261006T161500Z
+DTEND:20261006T171500Z
+SUMMARY:TBRe taster: Business & Marketing
+LOCATION:CB 3.5
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+BEGIN:VEVENT
+UID:tbre-taster-2-2026-v2@teambathracingelectric.com
+DTSTAMP:20261008T161500Z
+DTSTART:20261008T161500Z
+DTEND:20261008T171500Z
+SUMMARY:TBRe taster: Performance
+LOCATION:2E 3.1
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+BEGIN:VEVENT
+UID:tbre-taster-3-2026-v2@teambathracingelectric.com
+DTSTAMP:20261013T171500Z
+DTSTART:20261013T171500Z
+DTEND:20261013T181500Z
+SUMMARY:TBRe taster: Mechanical Design
+LOCATION:2E 3.1
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+BEGIN:VEVENT
+UID:tbre-taster-4-2026-v2@teambathracingelectric.com
+DTSTAMP:20261015T161500Z
+DTSTART:20261015T161500Z
+DTEND:20261015T171500Z
+SUMMARY:TBRe taster: Software
+LOCATION:4E 3.10
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+END:VCALENDAR

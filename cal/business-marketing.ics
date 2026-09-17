@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//TBRe//Join//EN
+BEGIN:VEVENT
+UID:tbre-taster-1-2026-v2@teambathracingelectric.com
+DTSTAMP:20261006T161500Z
+DTSTART:20261006T161500Z
+DTEND:20261006T171500Z
+SUMMARY:TBRe taster: Business & Marketing
+LOCATION:CB 3.5
+DESCRIPTION:Team Bath Racing Electric recruitment. https://teambathracingelectric.com
+END:VEVENT
+END:VCALENDAR
