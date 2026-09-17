@@ -4,12 +4,13 @@ Static sign-up page for TBRe 27 recruitment. One HTML file plus images. No build
 
 Flow: QR code -> sign-up form -> thank-you page (WhatsApp link, Intro Talk, taster sessions, about the team, FAQ).
 
-## What's in the folder
+Live at **join.teambathracingelectric.com**.
+
+## What's in the repo
 
 ```
 join-tbre/
   index.html      the whole page (HTML, CSS, JS in one file)
-  README.md       this file
   img/
     hero.jpg          desktop hero (Hockenheim wide shot)
     hero_mobile.jpg   phone hero (portrait crop of the panning shot)
@@ -17,6 +18,10 @@ join-tbre/
     redbull.jpg       car next to the Red Bull F1 car, about section
     logo.png          colour logo (favicon)
     logo_white.png    white logo (hero and footer)
+  README.md                       this file (not served)
+  wrangler.jsonc                  Cloudflare config (not served)
+  .assetsignore                   what Cloudflare leaves off the site
+  .github/workflows/deploy.yaml   deploys on every push to main
 ```
 
 Companion file, kept in the TBRe Teams channel: `TBRe27 Signups.xlsx`. The page writes into it via Power Automate (see step 2).
@@ -38,17 +43,15 @@ Everything else (headline, FAQ answers, about text) is plain text in the HTML. S
 
 Open item: the hero headline "Build the car. Race the car." is to be replaced. Vince has options to pick from.
 
-## Step 1: host it
+## Step 1: hosting
 
-Code lives in GitHub at `teambathracingelectric/join-tbre`. Cloudflare Pages deploys it on every push to `main`.
+Deployed the same way as the website and Log Studio: GitHub Actions runs `wrangler deploy` on every push to `main`, and Cloudflare serves the repo root as a static Worker at join.teambathracingelectric.com. Wrangler creates the DNS record on the first deploy. Nothing is set up in the Cloudflare dashboard.
 
-1. Cloudflare dashboard (the account that holds teambathracingelectric.com) > Workers & Pages > Create > Pages > **Connect to Git**.
-2. Pick `teambathracingelectric/join-tbre`. Production branch `main`.
-3. Build settings: Framework preset **None**, build command **empty**, build output directory **`/`**.
-4. Save and deploy. You get `join-tbre.pages.dev` within a minute.
-5. Pages project > Custom domains > add `join.teambathracingelectric.com`. If teambathracingelectric.com's DNS is on Cloudflare it adds the record itself; otherwise add the CNAME it shows at the DNS provider.
+The full team process is in GitLab: `tbre-ai/team-knowledge/processes` → `Web Development/Deploying with Cloudflare.md`. Follow that if it and this summary ever differ.
 
-To update later: edit and push to `main` (or edit in the GitHub web UI). Cloudflare redeploys automatically.
+One-off: the repo must be on the repository list of the organisation secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` (GitHub org → Settings → Secrets and variables → Actions). Without that, the Actions run goes green but prints a notice that nothing was deployed.
+
+To update the page: branch, edit, open a pull request, merge. The merge deploys it.
 
 ## Step 2: connect the Excel (Power Automate)
 
@@ -69,7 +72,7 @@ Do this after hosting, then redeploy with the URL filled in.
    - Location: the SharePoint site behind the Teams channel. Document library: Documents. File: `TBRe27 Signups.xlsx`. Table: `Signups`.
    - Map each column to the field of the same name from the trigger (dynamic content).
 5. Save. Reopen the trigger; it now shows the **HTTP POST URL**. Copy it.
-6. Paste it into `CONFIG.endpoint` in `index.html` (inside the quotes). Push to `main`; Cloudflare redeploys.
+6. Paste it into `CONFIG.endpoint` in `index.html` (inside the quotes). Merge to `main`; it redeploys.
 
 If the tenant blocks the HTTP trigger as a premium connector, tell Vince: fallback is a Microsoft Form behind the page.
 
