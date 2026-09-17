@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
 <meta name="description" content="Sign up to Team Bath Racing Electric, the University of Bath's Formula Student electric racing team.">
 <meta property="og:title" content="Join Team Bath Racing Electric">
 <meta property="og:description" content="Design, build and race an electric Formula Student car. Intro Talk Thursday 1 October, 18:15.">
-<meta property="og:image" content="https://join.teambathracingelectric.com/img/hero.jpg">
+<meta property="og:image" content="img/hero.jpg">
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,6 +217,13 @@ const CONFIG = {
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:_dlc_DocId msdt:dt="string">TBRE-1787653020-307274</mso:_dlc_DocId>
+<mso:_dlc_DocIdItemGuid msdt:dt="string">d5e9095e-fc76-4461-aed1-bd22a551db19</mso:_dlc_DocIdItemGuid>
+<mso:_dlc_DocIdUrl msdt:dt="string">https://computingservices.sharepoint.com/sites/tbre/_layouts/15/DocIdRedir.aspx?ID=TBRE-1787653020-307274, TBRE-1787653020-307274</mso:_dlc_DocIdUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
 </head>
 <body>
 
@@ -337,7 +344,7 @@ const CONFIG = {
         <p class="where" id="introWhere"></p>
         <p>An introduction to what TBRe is and how the year runs, a chance to meet the subteam leads, and open Q&amp;A at the end. No experience needed, any course, any year.</p>
         <div class="actions">
-          <a class="btn btn-navy" id="icsLink" href="#" download="TBRe-Intro-Talk.ics">Add to calendar</a>
+          <a class="btn btn-navy" id="icsLink" href="cal/intro.ics">Add to calendar</a>
           <a class="btn btn-line" id="gcalLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
         </div>
       </div>
@@ -345,7 +352,7 @@ const CONFIG = {
       <div class="sessions">
         <h3>Then five taster sessions, one per subteam</h3>
         <ol id="sessionList"></ol>
-        <p style="margin:1rem 0 0"><a class="btn btn-line" id="icsAll" href="#" download="TBRe-Taster-Sessions.ics" style="font-size:.95rem;padding:.7rem 1rem">Add all six to calendar</a></p>
+        <p style="margin:1rem 0 0"><a class="btn btn-line" id="icsAll" href="cal/all.ics" style="font-size:.95rem;padding:.7rem 1rem">Add all six to calendar</a></p>
         <p class="note">Come to as many as you like. Subteam onboarding starts after the tasters.</p>
       </div>
     </div>
@@ -509,35 +516,17 @@ const CONFIG = {
 
   const title = 'TBRe Intro Talk';
   const desc = 'Team Bath Racing Electric recruitment intro talk. ' + CONFIG.website;
-  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN','BEGIN:VEVENT',
-    'UID:tbre-intro-2026-v2@teambathracingelectric.com','DTSTAMP:'+i.startISO,'DTSTART:'+i.startISO,'DTEND:'+i.endISO,
-    'SUMMARY:'+title,'LOCATION:'+i.room,'DESCRIPTION:'+desc,'END:VEVENT','END:VCALENDAR'].join('\r\n');
-  document.getElementById('icsLink').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
   document.getElementById('gcalLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + '&text=' + encodeURIComponent(title) + '&dates=' + i.startISO + '/' + i.endISO
     + '&details=' + encodeURIComponent(desc) + '&location=' + encodeURIComponent(i.room);
 
-  // Taster sessions list + per-session calendar files
-  function toUTC(date, hm){ // UK local (BST, UTC+1) to ICS UTC stamp
-    const [h,m]=hm.split(':').map(Number);
-    const d=new Date(Date.UTC(+date.slice(0,4),+date.slice(5,7)-1,+date.slice(8,10),h-1,m));
-    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z');
-  }
-  function vevent(uid,start,end,summary,location){
-    return ['BEGIN:VEVENT','UID:'+uid,'DTSTAMP:'+start,'DTSTART:'+start,'DTEND:'+end,'SUMMARY:'+summary,'LOCATION:'+location,'DESCRIPTION:'+desc,'END:VEVENT'].join('\r\n');
-  }
-  function icsFile(events){ return 'data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN',...events,'END:VCALENDAR'].join('\r\n')); }
+  // Taster sessions list
   const list=document.getElementById('sessionList');
-  const all=[vevent('tbre-intro-2026-v2@teambathracingelectric.com',i.startISO,i.endISO,title,i.room)];
   CONFIG.sessions.forEach((x,n)=>{
-    const st=toUTC(x.date,x.start), en=toUTC(x.date,x.end);
-    const ev=vevent('tbre-taster-'+n+'-2026@teambathracingelectric.com',st,en,'TBRe taster: '+x.title,x.room);
-    all.push(ev);
     const li=document.createElement('li');
-    li.innerHTML='<span class="d">'+x.label+'</span><span class="t"><strong>'+x.title.replace('&','&amp;')+'</strong><br>'+x.room+', '+x.start+' to '+x.end+'<br><a href="'+icsFile([ev])+'" download="TBRe-'+x.title.replace(/[^A-Za-z]+/g,'-')+'.ics">Add to calendar</a></span>';
+    li.innerHTML='<span class="d">'+x.label+'</span><span class="t"><strong>'+x.title.replace('&','&amp;')+'</strong><br>'+x.room+', '+x.start+' to '+x.end+'<br><a href="cal/'+x.title.replace(/[^A-Za-z]+/g,'-').replace(/^-|-$/g,'').toLowerCase()+'.ics">Add to calendar</a></span>';
     list.appendChild(li);
   });
-  document.getElementById('icsAll').href=icsFile(all);
 
   // "Not sure yet" clears the others, and vice versa
   form.querySelectorAll('input[name=interest]').forEach(cb => cb.addEventListener('change', () => {
