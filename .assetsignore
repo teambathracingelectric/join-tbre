@@ -1,0 +1,7 @@
+# Files in the repo that are not part of the site
+.git
+.github
+.gitkeep
+.assetsignore
+README.md
+wrangler.jsonc

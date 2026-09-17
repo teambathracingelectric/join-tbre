@@ -1,0 +1,15 @@
+{
+  "compatibility_date": "2026-09-01",
+  "name": "join-tbre",
+
+  // Static assets only: the repo root is the site, so there is no build and no Worker
+  // script. .assetsignore keeps the README, this file and the workflow off the live site.
+  "assets": {
+    "directory": "./"
+  },
+
+  "observability": { "enabled": true },
+  "workers_dev": false,
+  "preview_urls": true,
+  "routes": [{ "pattern": "join.teambathracingelectric.com", "custom_domain": true }]
+}
