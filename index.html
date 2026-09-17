@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join Team Bath Racing Electric</title>
+<meta name="description" content="Sign up to Team Bath Racing Electric, the University of Bath's Formula Student electric racing team.">
+<meta property="og:title" content="Join Team Bath Racing Electric">
+<meta property="og:description" content="Design, build and race an electric Formula Student car. Intro Talk Thursday 1 October, 18:15.">
+<meta property="og:image" content="https://join.teambathracingelectric.com/img/hero.jpg">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+/* ============================================================
+   CONFIG. Everything you are likely to change lives here.
+   ============================================================ */
+const CONFIG = {
+  // Power Automate "When an HTTP request is received" URL. Leave empty while testing.
+  endpoint: "",
+  // WhatsApp community / group invite link
+  whatsapp: "https://chat.whatsapp.com/IrwsLKDtpVRBaCwdU0UO76",
+  // Intro Talk
+  intro: {
+    date: "Thursday 1 October 2026",
+    time: "18:15 to 19:15",
+    room: "CB 1.10, Chancellors' Building",
+    startISO: "20261001T171500Z", // 18:15 BST expressed in UTC
+    endISO:   "20261001T181500Z"
+  },
+  // Taster sessions. Times are UK local (BST); the page converts to UTC for calendars.
+  sessions: [
+    { label:"Tue 6 Oct",  title:"Electrical",           room:"2E 3.1",  date:"2026-10-06", start:"16:15", end:"17:15" },
+    { label:"Tue 6 Oct",  title:"Business & Marketing", room:"CB 3.5",  date:"2026-10-06", start:"17:15", end:"18:15" },
+    { label:"Thu 8 Oct",  title:"Performance",          room:"2E 3.1",  date:"2026-10-08", start:"17:15", end:"18:15" },
+    { label:"Tue 13 Oct", title:"Mechanical Design",    room:"2E 3.1",  date:"2026-10-13", start:"18:15", end:"19:15" },
+    { label:"Thu 15 Oct", title:"Software",             room:"4E 3.10", date:"2026-10-15", start:"17:15", end:"18:15" }
+  ],
+  website: "https://teambathracingelectric.com",
+  instagram: "https://instagram.com/teambathracingelectric",
+  linkedin: "https://linkedin.com/company/team-bath-racing-electric",
+  email: "tbre@bath.ac.uk"
+};
+</script>
+
+<style>
+  :root{
+    --navy:#0D1B3E;
+    --navy-deep:#07122B;
+    --gold:#F2B31B;
+    --gold-dark:#C98F08;
+    --stripe:#2451B8;
+    --ink:#161B26;
+    --ink-soft:#4C5566;
+    --line:#D6DAE3;
+    --paper:#F4F6FA;
+    --white:#FFFFFF;
+    --err:#B42318;
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:17px;line-height:1.5;color:var(--ink);background:var(--paper);
+  }
+  img{display:block;max-width:100%}
+  a{color:var(--stripe)}
+  h1,h2,h3{line-height:1.15;margin:0 0 .4em;font-weight:700;letter-spacing:-.01em}
+  h1{font-size:clamp(2rem,6vw,3rem)}
+  h2{font-size:clamp(1.5rem,4vw,2rem)}
+  h3{font-size:1.15rem}
+  p{margin:0 0 1em}
+  .wrap{width:min(100% - 2.5rem,560px);margin-inline:auto}
+  .wrap-wide{width:min(100% - 2.5rem,1040px);margin-inline:auto}
+  :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;background:var(--navy-deep);color:var(--white);
+    min-height:78vh;display:flex;align-items:flex-end;overflow:hidden;
+  }
+  .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;opacity:.9}
+  @media (min-width:760px){.hero img.bg{object-position:20% 45%} .wrap-hero{width:min(100% - 2.5rem,1040px)}}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(7,18,43,.6) 0%,rgba(7,18,43,0) 28%,rgba(7,18,43,0) 50%,rgba(7,18,43,.75) 78%,rgba(7,18,43,.95) 100%);
+  }
+  .hero .wrap{position:relative;z-index:1;padding:1.5rem 0 2.25rem;display:flex;flex-direction:column;align-items:flex-start;min-height:inherit;justify-content:space-between}
+  .hero .logo{height:50px;width:auto;margin-bottom:11rem}
+  .hero p{max-width:34ch;font-size:1.1rem;color:#DDE3F0;margin:0}
+  /* livery stripe: one gold band, one blue band, slanted like the sidepod */
+  .stripe{height:10px;background:linear-gradient(100deg,var(--gold) 0 68%,var(--white) 68% 69.5%,var(--stripe) 69.5% 100%)}
+
+  /* ---------- Form ---------- */
+  .form-section{padding:2.5rem 0 3.5rem}
+  .form-section h2{margin-bottom:.35em}
+  .form-section .lede{color:var(--ink-soft);margin-bottom:1.75rem}
+  .field{margin-bottom:1.25rem}
+  label{display:block;font-weight:600;margin-bottom:.4rem}
+  label .opt{font-weight:400;color:var(--ink-soft)}
+  input[type=text],input[type=email],select{
+    width:100%;font:inherit;font-size:1.05rem;padding:.8rem .95rem;
+    border:1.5px solid var(--line);border-radius:var(--radius);background:var(--white);color:var(--ink);
+    -webkit-appearance:none;appearance:none;
+  }
+  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M3 6l5 5 5-5' fill='none' stroke='%234C5566' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;padding-right:2.5rem}
+  input:focus,select:focus{border-color:var(--navy);outline:3px solid rgba(36,81,184,.18);outline-offset:0}
+  .field.invalid input,.field.invalid select{border-color:var(--err)}
+  .hint{font-size:.9rem;color:var(--ink-soft);margin:.35rem 0 0}
+  .error{font-size:.9rem;color:var(--err);margin:.35rem 0 0;display:none}
+  .field.invalid .error{display:block}
+
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .chip{position:relative}
+  .chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+  .chip span{
+    display:flex;align-items:center;justify-content:center;text-align:center;min-height:3.1rem;padding:.6rem .75rem;
+    border:1.5px solid var(--line);border-radius:var(--radius);background:var(--white);font-weight:500;
+  }
+  .chip input:checked + span{border-color:var(--navy);background:var(--navy);color:var(--white)}
+  .chip input:focus-visible + span{outline:3px solid var(--gold);outline-offset:2px}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font:inherit;font-weight:700;font-size:1.1rem;padding:1rem 1.5rem;border-radius:var(--radius);
+    border:0;cursor:pointer;text-decoration:none;transition:transform .08s ease,background .15s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-gold{background:var(--gold);color:var(--navy-deep);width:100%}
+  .btn-gold:hover{background:var(--gold-dark)}
+  .btn-gold[disabled]{opacity:.6;cursor:wait}
+  .btn-navy{background:var(--navy);color:var(--white)}
+  .btn-navy:hover{background:var(--navy-deep)}
+  .btn-line{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+  .btn-wa{background:#25D366;color:#062E18;width:100%;font-size:1.2rem;padding:1.15rem 1.5rem}
+  .btn-wa:hover{background:#1EBE5A}
+  .btn svg{flex:none}
+  .consent{font-size:.9rem;color:var(--ink-soft);margin:1rem 0 0}
+  .already{margin:1.5rem 0 0;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--ink-soft)}
+  .already a{font-weight:600}
+  .form-status{margin-top:1rem;font-size:.95rem;color:var(--err);display:none}
+
+  /* ---------- Thank you ---------- */
+  #thanks{display:none}
+  .thanks-head{background:var(--navy);color:var(--white);padding:3rem 0 2.5rem}
+  .thanks-head h1{margin-bottom:.3em}
+  .thanks-head p{color:#DDE3F0;font-size:1.1rem;max-width:36ch}
+  .cta{background:var(--white);border-bottom:1px solid var(--line);padding:2rem 0}
+  .cta p.small{font-size:.95rem;color:var(--ink-soft);margin:.85rem 0 0}
+
+  .event{padding:2.5rem 0}
+  .event-card{
+    background:var(--white);border:1.5px solid var(--line);border-left:6px solid var(--gold);
+    border-radius:var(--radius);padding:1.4rem 1.5rem;
+  }
+  .event-card .when{font-size:1.35rem;font-weight:700;color:var(--navy);margin:0 0 .15rem}
+  .event-card .where{margin:0 0 1rem;color:var(--ink-soft)}
+  .event-card .actions{display:flex;gap:.6rem;flex-wrap:wrap}
+  .event-card .actions .btn{font-size:.95rem;padding:.7rem 1rem}
+
+  .sessions{margin:2rem 0 0}
+  .sessions h3{margin-bottom:.6rem}
+  .sessions ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .sessions li{display:grid;grid-template-columns:6.5rem 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);line-height:1.4}
+  .sessions li .d{font-weight:600;color:var(--navy);white-space:nowrap}
+  .sessions li .t{color:var(--ink-soft)}
+  .sessions li .t strong{color:var(--ink)}
+  .sessions li .t a{font-size:.9rem;white-space:nowrap}
+  .sessions li.intro .t{font-weight:600}
+  .sessions p.note{font-size:.95rem;color:var(--ink-soft);margin:.9rem 0 0}
+
+  /* brochure */
+  .about{background:var(--white);padding:3rem 0}
+  .about .grid{display:grid;gap:2rem}
+  .about .lead{max-width:60ch}
+  .about p{max-width:60ch}
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0 0}
+  .fact{border-top:3px solid var(--gold);padding-top:.6rem}
+  .fact strong{display:block;font-size:1.6rem;color:var(--navy);line-height:1.1}
+  .fact span{color:var(--ink-soft);font-size:.95rem}
+  .photo{border-radius:var(--radius);overflow:hidden}
+  .photo img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .photo figcaption{font-size:.9rem;color:var(--ink-soft);padding:.5rem 0 0}
+  .reassure{margin-top:2.5rem;padding:1.5rem 1.75rem;background:var(--paper);border-left:6px solid var(--gold);border-radius:var(--radius);max-width:60ch}
+  .reassure h3{margin-bottom:.5rem}
+  .reassure p:last-child{margin-bottom:0}
+
+  .faq{padding:3rem 0}
+  .faq h2{margin-bottom:1rem}
+  .faq details{border-top:1px solid var(--line)}
+  .faq details:last-of-type{border-bottom:1px solid var(--line)}
+  .faq summary{cursor:pointer;list-style:none;padding:1rem 2rem 1rem 0;font-weight:600;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:.25rem;top:.85rem;font-size:1.5rem;font-weight:400;color:var(--stripe);line-height:1}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:0 0 1.1rem;color:var(--ink-soft)}
+
+  footer{background:var(--navy-deep);color:#C6CEDF;padding:2.5rem 0 3rem;font-size:.95rem}
+  footer .logo{height:44px;width:auto;margin-bottom:1.25rem}
+  footer a{color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+  footer .links{display:flex;flex-wrap:wrap;gap:1.25rem;margin:0 0 1.25rem}
+
+  @media (min-width:760px){
+    .hero{min-height:82vh}
+    .hero .wrap{padding-bottom:3rem}
+    .hero .logo{height:64px}
+    .about .grid{grid-template-columns:1.1fr .9fr;align-items:start}
+    .facts{grid-template-columns:repeat(4,1fr)}
+    .chips{grid-template-columns:repeat(3,1fr)}
+    .event-card{padding:1.75rem 2rem}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+
+<!-- ============================ SIGN UP ============================ -->
+<main id="signup">
+  <header class="hero">
+    <picture><source media="(max-width:759px)" srcset="img/hero_mobile.jpg"><img class="bg" src="img/hero.jpg" alt="" fetchpriority="high"></picture>
+    <div class="wrap wrap-hero">
+      <img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric">
+      <div><h1>Build the car. Race the car.</h1>
+      <p>TBRe designs, builds and races a fully electric single-seater every year. This is where you join for the 2027 season.</p></div>
+    </div>
+  </header>
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="form-section">
+    <div class="wrap">
+      <h2>Sign up</h2>
+      <p class="lede">Takes about thirty seconds. Everything you need to know is on the next page.</p>
+
+      <form id="joinForm" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+          <p class="error">Enter your name.</p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="ab1234@bath.ac.uk" required>
+          <p class="hint">Your Bath email is best. That's where the intro details go.</p>
+          <p class="error">Enter a valid email address.</p>
+        </div>
+
+        <div class="field">
+          <label for="course">Course</label>
+          <input type="text" id="course" name="course" list="courses" autocomplete="off" required>
+          <datalist id="courses">
+            <option>Mechanical Engineering</option>
+            <option>Electrical and Electronic Engineering</option>
+            <option>Integrated Mechanical and Electrical Engineering</option>
+            <option>Aerospace Engineering</option>
+            <option>Automotive Engineering</option>
+            <option>Mechanical with Manufacturing and Management</option>
+            <option>Computer Science</option>
+            <option>Management</option>
+            <option>Business Administration</option>
+            <option>Chemical Engineering</option>
+            <option>Civil Engineering</option>
+            <option>Physics</option>
+            <option>Mathematics</option>
+            <option>Economics</option>
+          </datalist>
+          <p class="error">Enter your course.</p>
+        </div>
+
+        <div class="field">
+          <label for="year">Year of study</label>
+          <select id="year" name="year" required>
+            <option value="" selected disabled>Choose one</option>
+            <option>1st year</option>
+            <option>2nd year</option>
+            <option>3rd year</option>
+            <option>4th year</option>
+            <option>Placement year</option>
+            <option>Postgraduate</option>
+          </select>
+          <p class="error">Choose your year.</p>
+        </div>
+
+        <fieldset class="field" style="border:0;padding:0;margin:0 0 1.25rem">
+          <legend style="display:block;font-weight:600;margin-bottom:.5rem;padding:0">What interests you most? <span class="opt">(optional, pick as many as you like)</span></legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="interest" value="Mechanical"><span>Mechanical</span></label>
+            <label class="chip"><input type="checkbox" name="interest" value="Electrical"><span>Electrical</span></label>
+            <label class="chip"><input type="checkbox" name="interest" value="Software"><span>Software</span></label>
+            <label class="chip"><input type="checkbox" name="interest" value="Business"><span>Business &amp; Marketing</span></label>
+            <label class="chip"><input type="checkbox" name="interest" value="Performance"><span>Performance</span></label>
+            <label class="chip"><input type="checkbox" name="interest" value="Not sure yet"><span>Not sure yet</span></label>
+          </div>
+          <p class="hint">Just to gauge interest for the taster sessions. Nothing binding, you can change your mind as many times as you like.</p>
+        </fieldset>
+
+        <button class="btn btn-gold" type="submit" id="submitBtn">Join TBRe</button>
+        <p class="consent">We use your details to contact you about TBRe recruitment and nothing else.</p>
+        <p class="already">Already signed up? <a href="#welcome" id="skipLink">Skip to the info page</a></p>
+        <p class="form-status" id="formStatus" role="alert"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- ============================ THANK YOU ============================ -->
+<main id="thanks">
+  <header class="thanks-head">
+    <div class="wrap">
+      <h1>You're in, <span id="firstName">welcome</span>.</h1>
+      <p>Two things to do now: join the WhatsApp so you don't miss anything, and come to the Intro Talk.</p>
+    </div>
+  </header>
+  <div class="stripe" aria-hidden="true"></div>
+
+  <section class="cta">
+    <div class="wrap">
+      <a class="btn btn-wa" id="waLink" href="#" target="_blank" rel="noopener">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        Join the TBRe 27 WhatsApp
+      </a>
+      <p class="small">All announcements, session reminders and room changes go there first.</p>
+    </div>
+  </section>
+
+  <section class="event">
+    <div class="wrap">
+      <h2>Come to the Intro Talk</h2>
+      <div class="event-card">
+        <p class="when" id="introWhen"></p>
+        <p class="where" id="introWhere"></p>
+        <p>An introduction to what TBRe is and how the year runs, a chance to meet the subteam leads, and open Q&amp;A at the end. No experience needed, any course, any year.</p>
+        <div class="actions">
+          <a class="btn btn-navy" id="icsLink" href="#" download="TBRe-Intro-Talk.ics">Add to calendar</a>
+          <a class="btn btn-line" id="gcalLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
+        </div>
+      </div>
+
+      <div class="sessions">
+        <h3>Then five taster sessions, one per subteam</h3>
+        <ol id="sessionList"></ol>
+        <p style="margin:1rem 0 0"><a class="btn btn-line" id="icsAll" href="#" download="TBRe-Taster-Sessions.ics" style="font-size:.95rem;padding:.7rem 1rem">Add all six to calendar</a></p>
+        <p class="note">Come to as many as you like. Subteam onboarding starts after the tasters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="wrap-wide">
+      <div class="grid">
+        <div>
+          <h2>What TBRe is</h2>
+          <p class="lead">Team Bath Racing Electric is the University of Bath's Formula Student team. Around 250 students from Engineering, Computer Science and Management design, build and race a fully electric single-seater, then compete against universities from around the world at Silverstone and Hockenheim.</p>
+          <p>Everything on the car is designed in house. This year's car moves to four-wheel drive with in-hub motors, the biggest technical step the team has taken in years. You'll work alongside sponsors like Analog Devices, Altium, Rotork and Mewburn Ellis, and leave with things you can put on a CV and talk about in an interview.</p>
+          <div class="facts">
+            <div class="fact"><strong>2015</strong><span>Founded</span></div>
+            <div class="fact"><strong>250+</strong><span>Members each year</span></div>
+            <div class="fact"><strong>FSUK + FSG</strong><span>Silverstone and Hockenheim</span></div>
+            <div class="fact"><strong>4WD</strong><span>In-hub motors for 2027</span></div>
+          </div>
+        </div>
+        <figure class="photo">
+          <img src="img/team.jpg" alt="The TBRe team lined up behind car 67 on the start line at Hockenheim" loading="lazy">
+          <figcaption>Formula Student Germany, Hockenheim, August 2026.</figcaption>
+        </figure>
+      </div>
+
+      <div class="reassure">
+        <h3>Don't stress</h3>
+        <p>Nobody joins TBRe knowing how to build a race car. Any course, any year, any level. Your first weeks are for finding out what the subteams do and picking what you want to learn. Someone on the team will onboard you, sit with you on your first tasks and answer whatever you ask.</p>
+        <p>First years are actively wanted. The people who do the most on the car by their final year are the ones who turned up in their first.</p>
+      </div>
+
+      <figure class="photo" style="margin-top:2.5rem">
+        <img src="img/redbull.jpg" alt="The TBRe car parked next to a Red Bull Racing Formula 1 car on the University of Bath campus" loading="lazy">
+        <figcaption>On campus with the Red Bull Racing F1 car.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions people ask</h2>
+      <details>
+        <summary>Can I join with no experience?</summary>
+        <p>Yes. We expect no prior knowledge. We're here to teach you and help you along, as long as you're proactive and motivated.</p>
+      </details>
+      <details>
+        <summary>I'm not doing an engineering degree. Can I still join?</summary>
+        <p>Yes. We have students from every course, from chemical engineering to biology to management. Come to the taster sessions, see what interests you, talk to the leads and we'll find the right role for you.</p>
+      </details>
+      <details>
+        <summary>How do I get involved?</summary>
+        <p>Come to the taster sessions and the weekly meetings, keep an eye on the WhatsApp for announcements, and put your hand up when the team needs help. The more we see you in lectures and lab tasks, the more we get to know you.</p>
+      </details>
+      <details>
+        <summary>How much time does it take?</summary>
+        <p>As much as you want to give. Some people do a few hours a week, others are in the lab most evenings. It ramps up towards competition in the summer.</p>
+      </details>
+      <details>
+        <summary>Is there a membership fee?</summary>
+        <p>No.</p>
+      </details>
+      <details>
+        <summary>Do I need to be in a subteam from day one?</summary>
+        <p>No. Tasters run through mid October, then you pick a subteam and onboarding starts.</p>
+      </details>
+      <details>
+        <summary>Can I join later in the year?</summary>
+        <p>Yes, but the earlier you join the more you learn and the more you get to do on the car.</p>
+      </details>
+      <details>
+        <summary>What's in it for me?</summary>
+        <p>Real engineering and business experience on a car that races at Silverstone and Hockenheim, sponsors who recruit from the team, and something concrete to talk about in interviews. Formula Student is the recognised gateway into F1 and motorsport, and TBRe alumni are across the paddock.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap-wide">
+      <img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric">
+      <p class="links">
+        <a id="siteLink" href="#" target="_blank" rel="noopener">teambathracingelectric.com</a>
+        <a id="igLink" href="#" target="_blank" rel="noopener">Instagram</a>
+        <a id="liLink" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a id="mailLink" href="#">Email the team</a>
+      </p>
+      <p>Team Bath Racing Electric, Faculty of Engineering and Design, University of Bath.</p>
+    </div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  const form = document.getElementById('joinForm');
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+
+  function validate(){
+    let ok = true;
+    for (const id of ['name','email','course','year']){
+      const el = document.getElementById(id);
+      const field = el.closest('.field');
+      const valid = id === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()) : el.value.trim() !== '';
+      field.classList.toggle('invalid', !valid);
+      if (!valid && ok){ el.focus(); ok = false; }
+    }
+    return ok;
+  }
+
+  async function send(payload){
+    if (!CONFIG.endpoint) return true; // nothing configured yet
+    const r = await fetch(CONFIG.endpoint, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    return r.ok;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.style.display = 'none';
+    if (!validate()) return;
+
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+    data.interest = fd.getAll('interest').join(', ');
+    data.submitted = new Date().toISOString();
+    data.source = new URLSearchParams(location.search).get('src') || 'qr';
+
+    btn.disabled = true; btn.textContent = 'Saving…';
+    let ok = false;
+    try { ok = await send(data); if (!ok) ok = await send(data); } catch (err) { ok = false; }
+
+    if (!ok && CONFIG.endpoint){
+      btn.disabled = false; btn.textContent = 'Join TBRe';
+      status.textContent = "That didn't save. Check your connection and try again, or join the WhatsApp and we'll add you there.";
+      status.style.display = 'block';
+      return;
+    }
+    showThanks(data.name);
+  });
+
+  function showThanks(name){
+    const first = (name || '').trim().split(/\s+/)[0];
+    document.getElementById('firstName').textContent = first || 'welcome';
+    document.getElementById('signup').style.display = 'none';
+    document.getElementById('thanks').style.display = 'block';
+    window.scrollTo({top:0, behavior:'instant'});
+    history.replaceState(null, '', '#welcome');
+  }
+
+  // Populate thank-you links from CONFIG
+  const i = CONFIG.intro;
+  document.getElementById('introWhen').textContent = `${i.date}, ${i.time}`;
+  document.getElementById('introWhere').textContent = i.room;
+  document.getElementById('waLink').href = CONFIG.whatsapp;
+  document.getElementById('siteLink').href = CONFIG.website;
+  document.getElementById('igLink').href = CONFIG.instagram;
+  document.getElementById('liLink').href = CONFIG.linkedin;
+  document.getElementById('mailLink').href = 'mailto:' + CONFIG.email;
+
+  const title = 'TBRe Intro Talk';
+  const desc = 'Team Bath Racing Electric recruitment intro talk. ' + CONFIG.website;
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN','BEGIN:VEVENT',
+    'UID:tbre-intro-2026-v2@teambathracingelectric.com','DTSTAMP:'+i.startISO,'DTSTART:'+i.startISO,'DTEND:'+i.endISO,
+    'SUMMARY:'+title,'LOCATION:'+i.room,'DESCRIPTION:'+desc,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  document.getElementById('icsLink').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  document.getElementById('gcalLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + '&text=' + encodeURIComponent(title) + '&dates=' + i.startISO + '/' + i.endISO
+    + '&details=' + encodeURIComponent(desc) + '&location=' + encodeURIComponent(i.room);
+
+  // Taster sessions list + per-session calendar files
+  function toUTC(date, hm){ // UK local (BST, UTC+1) to ICS UTC stamp
+    const [h,m]=hm.split(':').map(Number);
+    const d=new Date(Date.UTC(+date.slice(0,4),+date.slice(5,7)-1,+date.slice(8,10),h-1,m));
+    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z');
+  }
+  function vevent(uid,start,end,summary,location){
+    return ['BEGIN:VEVENT','UID:'+uid,'DTSTAMP:'+start,'DTSTART:'+start,'DTEND:'+end,'SUMMARY:'+summary,'LOCATION:'+location,'DESCRIPTION:'+desc,'END:VEVENT'].join('\r\n');
+  }
+  function icsFile(events){ return 'data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN',...events,'END:VCALENDAR'].join('\r\n')); }
+  const list=document.getElementById('sessionList');
+  const all=[vevent('tbre-intro-2026-v2@teambathracingelectric.com',i.startISO,i.endISO,title,i.room)];
+  CONFIG.sessions.forEach((x,n)=>{
+    const st=toUTC(x.date,x.start), en=toUTC(x.date,x.end);
+    const ev=vevent('tbre-taster-'+n+'-2026@teambathracingelectric.com',st,en,'TBRe taster: '+x.title,x.room);
+    all.push(ev);
+    const li=document.createElement('li');
+    li.innerHTML='<span class="d">'+x.label+'</span><span class="t"><strong>'+x.title.replace('&','&amp;')+'</strong><br>'+x.room+', '+x.start+' to '+x.end+'<br><a href="'+icsFile([ev])+'" download="TBRe-'+x.title.replace(/[^A-Za-z]+/g,'-')+'.ics">Add to calendar</a></span>';
+    list.appendChild(li);
+  });
+  document.getElementById('icsAll').href=icsFile(all);
+
+  // "Not sure yet" clears the others, and vice versa
+  form.querySelectorAll('input[name=interest]').forEach(cb => cb.addEventListener('change', () => {
+    if (!cb.checked) return;
+    const unsure = cb.value === 'Not sure yet';
+    form.querySelectorAll('input[name=interest]').forEach(o => { if (o !== cb && (unsure || o.value === 'Not sure yet')) o.checked = false; });
+  }));
+
+  document.getElementById('skipLink').addEventListener('click', e => { e.preventDefault(); showThanks(''); });
+
+  // Direct link to the info page for people already signed up (e.g. share #welcome in the WhatsApp)
+  if (location.hash === '#welcome') showThanks('');
+})();
+</script>
+</body>
+</html>
