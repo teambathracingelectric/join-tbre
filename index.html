@@ -339,7 +339,6 @@ const CONFIG = {
         <p>An introduction to what TBRe is and how the year runs, a chance to meet the subteam leads, and open Q&amp;A at the end. No experience needed, any course, any year.</p>
         <div class="actions">
           <a class="btn btn-navy" id="icsLink" href="#" download="TBRe-Intro-Talk.ics">Add to calendar</a>
-          <a class="btn btn-line" id="gcalLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
         </div>
       </div>
 
@@ -522,9 +521,6 @@ const CONFIG = {
     'UID:tbre-intro-2026-v2@teambathracingelectric.com','DTSTAMP:'+i.startISO,'DTSTART:'+i.startISO,'DTEND:'+i.endISO,
     'SUMMARY:'+title,'LOCATION:'+i.room,'DESCRIPTION:'+desc,'END:VEVENT','END:VCALENDAR'].join('\r\n');
   document.getElementById('icsLink').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
-  document.getElementById('gcalLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-    + '&text=' + encodeURIComponent(title) + '&dates=' + i.startISO + '/' + i.endISO
-    + '&details=' + encodeURIComponent(desc) + '&location=' + encodeURIComponent(i.room);
 
   // Taster sessions list + per-session calendar files
   function toUTC(date, hm){ // UK local (BST, UTC+1) to ICS UTC stamp
