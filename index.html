@@ -143,8 +143,7 @@ const CONFIG = {
   .btn svg{flex:none}
   .consent{font-size:.9rem;color:var(--ink-soft);margin:1rem 0 0}
   .already{margin:1.5rem 0 0;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--ink-soft)}
-  .already-top{margin:0 0 1.75rem;padding:.85rem 1.1rem;background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius);color:var(--ink-soft);font-size:.95rem}
-  .already a,.already-top a{font-weight:600}
+  .already a{font-weight:600}
   .form-status{margin-top:1rem;font-size:.95rem;color:var(--err);display:none}
 
   /* ---------- Thank you ---------- */
@@ -212,7 +211,6 @@ const CONFIG = {
     .hero .wrap{padding-bottom:3rem}
     .hero .logo{height:64px}
     .about .photo-wide img{aspect-ratio:21/9}
-    .already-top{display:none}
     .facts{grid-template-columns:repeat(4,1fr)}
     .chips{grid-template-columns:repeat(3,1fr)}
     .event-card{padding:1.75rem 2rem}
@@ -239,7 +237,6 @@ const CONFIG = {
     <div class="wrap">
       <h2>Sign up</h2>
       <p class="lede">Takes about thirty seconds. Everything you need to know is on the next page.</p>
-      <p class="already-top">Already signed up? <a class="skip-link" href="#welcome">Skip to the info page</a></p>
 
       <form id="joinForm" novalidate>
         <div class="field">
