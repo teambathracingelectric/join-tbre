@@ -142,7 +142,7 @@ const CONFIG = {
   .btn-wa:hover{background:#1EBE5A}
   .btn svg{flex:none}
   .consent{font-size:.9rem;color:var(--ink-soft);margin:1rem 0 0}
-  .already{margin:1.5rem 0 0;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--ink-soft)}
+  .already{margin:0 0 1.75rem;padding:.85rem 1.1rem;background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius);color:var(--ink-soft);font-size:.95rem}
   .already a{font-weight:600}
   .form-status{margin-top:1rem;font-size:.95rem;color:var(--err);display:none}
 
@@ -177,7 +177,7 @@ const CONFIG = {
 
   /* brochure */
   .about{background:var(--white);padding:3rem 0}
-  .about .grid{display:grid;gap:2rem}
+  .about .photo-wide{margin:0 0 2.25rem}
   .about .lead{max-width:60ch}
   .about p{max-width:60ch}
   .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0 0}
@@ -210,7 +210,7 @@ const CONFIG = {
     .hero{min-height:82vh}
     .hero .wrap{padding-bottom:3rem}
     .hero .logo{height:64px}
-    .about .grid{grid-template-columns:1.1fr .9fr;align-items:start}
+    .about .photo-wide img{aspect-ratio:21/9}
     .facts{grid-template-columns:repeat(4,1fr)}
     .chips{grid-template-columns:repeat(3,1fr)}
     .event-card{padding:1.75rem 2rem}
@@ -227,8 +227,8 @@ const CONFIG = {
     <picture><source media="(max-width:759px)" srcset="img/hero_mobile.jpg"><img class="bg" src="img/hero.jpg" alt="" fetchpriority="high"></picture>
     <div class="wrap wrap-hero">
       <img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric">
-      <div><h1>Build the car. Race the car.</h1>
-      <p>TBRe designs, builds and races a fully electric single-seater every year. This is where you join for the 2027 season.</p></div>
+      <div><h1>Join the team. Race the car.</h1>
+      <p>TBRe designs, builds and races a fully electric single-seater every year. Sign up here for the 2027 season.</p></div>
     </div>
   </header>
   <div class="stripe" aria-hidden="true"></div>
@@ -237,6 +237,7 @@ const CONFIG = {
     <div class="wrap">
       <h2>Sign up</h2>
       <p class="lede">Takes about thirty seconds. Everything you need to know is on the next page.</p>
+      <p class="already">Already signed up? <a href="#welcome" id="skipLink">Skip to the info page</a></p>
 
       <form id="joinForm" novalidate>
         <div class="field">
@@ -303,7 +304,6 @@ const CONFIG = {
 
         <button class="btn btn-gold" type="submit" id="submitBtn">Join TBRe</button>
         <p class="consent">We use your details to contact you about TBRe recruitment and nothing else.</p>
-        <p class="already">Already signed up? <a href="#welcome" id="skipLink">Skip to the info page</a></p>
         <p class="form-status" id="formStatus" role="alert"></p>
       </form>
     </div>
@@ -354,11 +354,16 @@ const CONFIG = {
 
   <section class="about">
     <div class="wrap-wide">
-      <div class="grid">
+      <figure class="photo photo-wide">
+        <img src="img/team.jpg" alt="The TBRe team lined up behind car 67 on the start line at Hockenheim" loading="lazy">
+        <figcaption>Formula Student Germany, Hockenheim, August 2026.</figcaption>
+      </figure>
+
+      <div class="about-body">
         <div>
-          <h2>What TBRe is</h2>
+          <h2>What is TBRe</h2>
           <p class="lead">Team Bath Racing Electric is the University of Bath's Formula Student team. Around 250 students from Engineering, Computer Science and Management design, build and race a fully electric single-seater, then compete against universities from around the world at Silverstone and Hockenheim.</p>
-          <p>Everything on the car is designed in house. This year's car moves to four-wheel drive with in-hub motors, the biggest technical step the team has taken in years. You'll work alongside sponsors like Analog Devices, Altium, Rotork and Mewburn Ellis, and leave with things you can put on a CV and talk about in an interview.</p>
+          <p>Everything on the car is designed in house. This year the technical team moves to four-wheel drive with in-hub motors, the biggest step TBRe has taken in years. TBReAI, the autonomous division, is targeting integration of its self-driving systems onto that same car. And Operations &amp; Business keeps the whole thing running – brand design, marketing, sponsorships, and recruitment. You'll gain invaluable hands-on experience you can put on your CV and talk about in an interview.</p>
           <div class="facts">
             <div class="fact"><strong>2015</strong><span>Founded</span></div>
             <div class="fact"><strong>250+</strong><span>Members each year</span></div>
@@ -366,10 +371,6 @@ const CONFIG = {
             <div class="fact"><strong>4WD</strong><span>In-hub motors for 2027</span></div>
           </div>
         </div>
-        <figure class="photo">
-          <img src="img/team.jpg" alt="The TBRe team lined up behind car 67 on the start line at Hockenheim" loading="lazy">
-          <figcaption>Formula Student Germany, Hockenheim, August 2026.</figcaption>
-        </figure>
       </div>
 
       <div class="reassure">
@@ -378,7 +379,7 @@ const CONFIG = {
         <p>First years are actively wanted. The people who do the most on the car by their final year are the ones who turned up in their first.</p>
       </div>
 
-      <figure class="photo" style="margin-top:2.5rem">
+      <figure class="photo photo-wide" style="margin-top:2.5rem">
         <img src="img/redbull.jpg" alt="The TBRe car parked next to a Red Bull Racing Formula 1 car on the University of Bath campus" loading="lazy">
         <figcaption>On campus with the Red Bull Racing F1 car.</figcaption>
       </figure>
@@ -415,6 +416,10 @@ const CONFIG = {
       <details>
         <summary>Can I join later in the year?</summary>
         <p>Yes, but the earlier you join the more you learn and the more you get to do on the car.</p>
+      </details>
+      <details>
+        <summary>Can I drive the car?</summary>
+        <p>The car is driven by very experienced drivers who have contributed to the team over a long period of time. It's our pride and joy and needs someone we can trust in the cockpit. The best way to become a driver is not to ask.</p>
       </details>
       <details>
         <summary>What's in it for me?</summary>
