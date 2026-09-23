@@ -203,6 +203,7 @@ const CONFIG = {
 
   footer{background:var(--navy-deep);color:#C6CEDF;padding:2.5rem 0 3rem;font-size:.95rem}
   footer .logo{height:44px;width:auto;margin-bottom:1.25rem}
+  .logo-link{display:inline-block;border:0}
   footer a{color:var(--white);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
   footer .links{display:flex;flex-wrap:wrap;gap:1.25rem;margin:0 0 1.25rem}
 
@@ -226,7 +227,7 @@ const CONFIG = {
   <header class="hero">
     <picture><source media="(max-width:759px)" srcset="img/hero_mobile.jpg"><img class="bg" src="img/hero.jpg" alt="" fetchpriority="high"></picture>
     <div class="wrap wrap-hero">
-      <img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric">
+      <a class="logo-link" href="https://teambathracingelectric.com" target="_blank" rel="noopener"><img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric"></a>
       <div><h1>Join the team. Race the car.</h1>
       <p>TBRe designs, builds and races a fully electric single-seater every year. Sign up here for the 2027 season.</p></div>
     </div>
@@ -429,7 +430,7 @@ const CONFIG = {
 
   <footer>
     <div class="wrap-wide">
-      <img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric">
+      <a class="logo-link" href="https://teambathracingelectric.com" target="_blank" rel="noopener"><img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric"></a>
       <p class="links">
         <a id="siteLink" href="#" target="_blank" rel="noopener">teambathracingelectric.com</a>
         <a id="igLink" href="#" target="_blank" rel="noopener">Instagram</a>
@@ -511,6 +512,7 @@ const CONFIG = {
   document.getElementById('introWhere').textContent = i.room;
   document.getElementById('waLink').href = CONFIG.whatsapp;
   document.getElementById('siteLink').href = CONFIG.website;
+  document.querySelectorAll('.logo-link').forEach(a => a.href = CONFIG.website);
   document.getElementById('igLink').href = CONFIG.instagram;
   document.getElementById('liLink').href = CONFIG.linkedin;
   document.getElementById('mailLink').href = 'mailto:' + CONFIG.email;
