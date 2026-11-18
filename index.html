@@ -6,7 +6,7 @@
 <title>Join Team Bath Racing Electric</title>
 <meta name="description" content="Sign up to Team Bath Racing Electric, the University of Bath's Formula Student electric racing team.">
 <meta property="og:title" content="Join Team Bath Racing Electric">
-<meta property="og:description" content="Design, build and race an electric Formula Student car. Intro Talk Thursday 1 October, 18:15.">
+<meta property="og:description" content="Design, build and race an electric Formula Student car. Kickoff is underway and it's not too late to join.">
 <meta property="og:image" content="https://join.teambathracingelectric.com/img/hero.jpg">
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,22 +23,51 @@ const CONFIG = {
   endpoint: "https://script.google.com/macros/s/AKfycbwkFCwgUf6BJHV3etpgKsRvKXB9W2VZoaptpf6bt58TXrS_ga9eFXnzh2rw9ofkBCKI/exec",
   // WhatsApp community / group invite link
   whatsapp: "https://chat.whatsapp.com/IrwsLKDtpVRBaCwdU0UO76",
-  // Intro Talk
-  intro: {
-    date: "Thursday 1 October 2026",
-    time: "18:15 to 19:15",
-    room: "CB 1.10, Chancellors' Building",
-    startISO: "20261001T171500Z", // 18:15 BST expressed in UTC
-    endISO:   "20261001T181500Z"
-  },
-  // Taster sessions. Times are UK local (BST); the page converts to UTC for calendars.
+  // Kickoff sessions. Times are UK local (BST). The page only shows the ones that
+  // haven't finished yet; once they're all done it switches to the "still time to join" view.
   sessions: [
+    { label:"Thu 1 Oct",  title:"Intro Talk",           room:"CB 1.10", date:"2026-10-01", start:"18:15", end:"19:15" },
     { label:"Tue 6 Oct",  title:"Electrical",           room:"2E 3.1",  date:"2026-10-06", start:"16:15", end:"17:15" },
     { label:"Tue 6 Oct",  title:"Business & Marketing", room:"CB 3.5",  date:"2026-10-06", start:"17:15", end:"18:15" },
     { label:"Thu 8 Oct",  title:"Performance",          room:"2E 3.1",  date:"2026-10-08", start:"17:15", end:"18:15" },
     { label:"Tue 13 Oct", title:"Mechanical Design",    room:"2E 3.1",  date:"2026-10-13", start:"18:15", end:"19:15" },
     { label:"Thu 15 Oct", title:"Software",             room:"4E 3.10", date:"2026-10-15", start:"17:15", end:"18:15" }
   ],
+  // Who's who, grouped as on the TBRe 27 team slides. "code" is the Bath username (e.g. ab1234),
+  // which becomes ab1234@bath.ac.uk for the "Message on Teams" button. Leave code empty and the
+  // person still shows, just without the button. tone sets the avatar colour: navy, orange, gold, black.
+  // start:"Area" puts them in the "Not sure who to message?" line.
+  
+  leadGroups: [
+    { title:"Technical Team", leads:[
+      { name:"Ibraheem Rodrigues", role:"Technical Director",          code:"ir422", tone:"navy" },
+      { name:"Khayaam Waris",      role:"Chief Engineer / Aero Lead",  code:"kw848", tone:"navy" },
+      { name:"Miles Dawson",       role:"Head of Test",                code:"md2328", tone:"navy" },
+      { name:"Oliver Zilli",       role:"Inboard (Mech) Lead",         code:"oz228", tone:"navy" },
+      { name:"Ola Werring",        role:"Outboard (Mech) Lead",        code:"ofw25", tone:"navy" },
+      { name:"Ellie Harrington",   role:"Systems Lead",                code:"th2226", tone:"navy" },
+      { name:"Alex Cucchiara",     role:"Electronics Lead",            code:"ac3499", tone:"navy" },
+      { name:"Jake Stewart",       role:"Controls Lead",               code:"js3910", tone:"navy" },
+      { name:"Peter Spencer",      role:"Powertrain Lead",             code:"ps2300", tone:"navy" },
+      { name:"Josh Mobsby",        role:"VD Lead",                     code:"jm3359", tone:"navy" },
+      { name:"Jonathan Masters",   role:"Chassis Lead",                code:"jm3306", tone:"navy" },
+      { name:"James Cicigoi",      role:"Lead ESO",                    code:"jc3908", tone:"navy" }
+    ]},
+    { title:"Leadership, AI & Business", leads:[
+      { name:"Vincent Morel Cavailhes", role:"Team Principal / Finance",                        code:"vc466", tone:"black"  },
+      { name:"James Morris",            role:"TBReAI Director",                                 code:"jm3339", tone:"orange" },
+      { name:"Sara Alkhalili",          role:"Technical Coordinator / Mechanical Subteam Lead", code:"sa3257", tone:"orange", start:"Mechanical" },
+      { name:"Ryan Vickery",            role:"Software Subteam Lead",                           code:"rev21", tone:"orange", start:"Software" },
+      { name:"Panteha Asadi",           role:"Electrical Subteam Lead",                         code:"pa838", tone:"orange", start:"Electrical" },
+      { name:"Oli Sargent",             role:"Business Director / Head of Business",            code:"os700", tone:"gold",   start:"Business & Marketing" },
+      { name:"Emma Dickson",            role:"Head of BPP",                                     code:"ed809", tone:"gold" },
+      { name:"Elisabet Pawlenko",       role:"Head of Marketing",                               code:"ep2252", tone:"gold" },
+      { name:"Toby Hirsch",              role:"Head of Sponsorship",                            code:"th2290", tone:"gold" },
+      { name:"Audrey Raguin",           role:"Head of Events & Outreach",                       code:"ar2914", tone:"gold" },
+      { name:"Anna Sanchez",            role:"Head of Branding & Creative",                     code:"ajs383", tone:"gold" }
+    ]}
+  ],
+  uniDomain: "bath.ac.uk",
   website: "https://teambathracingelectric.com",
   instagram: "https://instagram.com/teambathracingelectric",
   linkedin: "https://linkedin.com/company/team-bath-racing-electric",
@@ -53,6 +82,7 @@ const CONFIG = {
     --gold:#F2B31B;
     --gold-dark:#C98F08;
     --stripe:#2451B8;
+    --teams:#5B5FC7;
     --ink:#161B26;
     --ink-soft:#4C5566;
     --line:#D6DAE3;
@@ -94,7 +124,6 @@ const CONFIG = {
   .hero .wrap{position:relative;z-index:1;padding:1.5rem 0 2.25rem;display:flex;flex-direction:column;align-items:flex-start;min-height:inherit;justify-content:space-between}
   .hero .logo{height:50px;width:auto;margin-bottom:11rem}
   .hero p{max-width:34ch;font-size:1.1rem;color:#DDE3F0;margin:0}
-  /* livery stripe: one gold band, one blue band, slanted like the sidepod */
   .stripe{height:10px;background:linear-gradient(100deg,var(--gold) 0 68%,var(--white) 68% 69.5%,var(--stripe) 69.5% 100%)}
 
   /* ---------- Form ---------- */
@@ -150,30 +179,71 @@ const CONFIG = {
   #thanks{display:none}
   .thanks-head{background:var(--navy);color:var(--white);padding:3rem 0 2.5rem}
   .thanks-head h1{margin-bottom:.3em}
-  .thanks-head p{color:#DDE3F0;font-size:1.1rem;max-width:36ch}
+  .thanks-head p{color:#DDE3F0;font-size:1.1rem;max-width:38ch}
+  .thanks-head p strong{color:var(--white)}
   .cta{background:var(--white);border-bottom:1px solid var(--line);padding:2rem 0}
   .cta p.small{font-size:.95rem;color:var(--ink-soft);margin:.85rem 0 0}
 
-  .event{padding:2.5rem 0}
-  .event-card{
+  /* upcoming sessions */
+  .upcoming{padding:2.5rem 0 1rem}
+  .upcoming .lede{color:var(--ink-soft);margin-bottom:1.25rem}
+  .sess{list-style:none;margin:0;padding:0;display:grid;gap:.85rem}
+  .sess li{
     background:var(--white);border:1.5px solid var(--line);border-left:6px solid var(--gold);
-    border-radius:var(--radius);padding:1.4rem 1.5rem;
+    border-radius:var(--radius);padding:1.1rem 1.25rem;display:grid;grid-template-columns:4.25rem 1fr;gap:1rem;align-items:start;
   }
-  .event-card .when{font-size:1.35rem;font-weight:700;color:var(--navy);margin:0 0 .15rem}
-  .event-card .where{margin:0 0 1rem;color:var(--ink-soft)}
-  .event-card .actions{display:flex;gap:.6rem;flex-wrap:wrap}
-  .event-card .actions .btn{font-size:.95rem;padding:.7rem 1rem}
+  .sess .date{text-align:center;background:var(--navy);color:var(--white);border-radius:8px;padding:.45rem 0 .5rem;line-height:1.1}
+  .sess .date .dow{display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gold)}
+  .sess .date .dom{display:block;font-size:1.6rem;font-weight:700}
+  .sess .date .mon{display:block;font-size:.75rem;color:#C6CEDF}
+  .sess h3{margin:.05rem 0 .2rem;font-size:1.2rem}
+  .sess .meta{margin:0 0 .55rem;color:var(--ink-soft);font-size:.95rem}
+  .sess .tags{display:flex;gap:.4rem;flex-wrap:wrap;margin:0 0 .4rem}
+  .tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.2rem .5rem;border-radius:4px}
+  .tag-week{background:#E6ECFA;color:var(--stripe)}
+  .tag-today{background:var(--gold);color:var(--navy-deep)}
+  .tag-last{background:#FDECEA;color:var(--err)}
+  .sess a.cal{font-size:.9rem;font-weight:600}
+  .upcoming .all{margin:1.1rem 0 0}
+  .upcoming .all .btn{font-size:.95rem;padding:.7rem 1rem}
+  .done-card{background:var(--white);border:1.5px solid var(--line);border-left:6px solid var(--gold);border-radius:var(--radius);padding:1.4rem 1.5rem}
+  .done-card ol{margin:.25rem 0 0;padding-left:1.25rem}
+  .done-card li{margin:0 0 .5rem}
+  .done-card li:last-child{margin-bottom:0}
 
-  .sessions{margin:2rem 0 0}
-  .sessions h3{margin-bottom:.6rem}
-  .sessions ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-  .sessions li{display:grid;grid-template-columns:6.5rem 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);line-height:1.4}
-  .sessions li .d{font-weight:600;color:var(--navy);white-space:nowrap}
-  .sessions li .t{color:var(--ink-soft)}
-  .sessions li .t strong{color:var(--ink)}
-  .sessions li .t a{font-size:.9rem;white-space:nowrap}
-  .sessions li.intro .t{font-weight:600}
-  .sessions p.note{font-size:.95rem;color:var(--ink-soft);margin:.9rem 0 0}
+  /* leads */
+  .leads{padding:2rem 0 3rem}
+  .leads .lede{color:var(--ink-soft);margin-bottom:1rem;max-width:60ch}
+  .start-here{background:var(--white);border-left:6px solid var(--gold);border-radius:var(--radius);padding:1rem 1.25rem;margin:0 0 2rem;max-width:60ch}
+  .start-here p{margin:0}
+  .lead-group{margin:0 0 2rem}
+  .lead-group h3{font-size:1.2rem;color:var(--navy);margin:0 0 .75rem;padding-bottom:.4rem;border-bottom:3px solid var(--gold);display:inline-block}
+  .lead-grid{list-style:none;margin:0;padding:0;display:grid;gap:.65rem;grid-template-columns:1fr}
+  .lead-card{
+    background:var(--white);border:1.5px solid var(--line);border-radius:var(--radius);
+    padding:.8rem .9rem;display:grid;grid-template-columns:3rem 1fr;gap:.85rem;align-items:center;
+  }
+  .lead-card.tone-navy{border-color:#B9C6E6}
+  .lead-card.tone-orange{border-color:#F3B9A0}
+  .lead-card.tone-gold{border-color:#F4D98C}
+  .lead-card.tone-black{border-color:var(--ink)}
+  .av{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;letter-spacing:.02em}
+  .tone-navy .av{background:#0B4EA2;color:#fff}
+  .tone-orange .av{background:#E8622A;color:#fff}
+  .tone-gold .av{background:var(--gold);color:var(--navy-deep)}
+  .tone-black .av{background:#161616;color:#fff}
+  .lead-card .who{min-width:0}
+  .lead-card .name{display:block;font-weight:700;line-height:1.25}
+  .lead-card .role{display:block;font-size:.9rem;line-height:1.3;color:var(--ink-soft)}
+  .tone-navy .role{color:#0B4EA2}
+  .tone-orange .role{color:#B5441A}
+  .tone-gold .role{color:#7A5B05}
+  .lead-card code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:var(--ink-soft)}
+  .btn-teams{grid-column:2;justify-self:start;background:var(--teams);color:var(--white);font-size:.85rem;padding:.45rem .75rem;margin-top:-.25rem}
+  .btn-teams:hover{background:#4A4EB0}
+  .leads .note{font-size:.9rem;color:var(--ink-soft);margin:0}
+  @media (min-width:640px){.lead-grid{grid-template-columns:1fr 1fr}}
+  @media (min-width:960px){.lead-grid{grid-template-columns:repeat(3,1fr)}}
 
   /* brochure */
   .about{background:var(--white);padding:3rem 0}
@@ -214,7 +284,6 @@ const CONFIG = {
     .about .photo-wide img{aspect-ratio:21/9}
     .facts{grid-template-columns:repeat(4,1fr)}
     .chips{grid-template-columns:repeat(3,1fr)}
-    .event-card{padding:1.75rem 2rem}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -229,7 +298,7 @@ const CONFIG = {
     <div class="wrap wrap-hero">
       <a class="logo-link" href="https://teambathracingelectric.com" target="_blank" rel="noopener"><img class="logo" src="img/logo_white.png" alt="Team Bath Racing Electric"></a>
       <div><h1>Join the team. Race the car.</h1>
-      <p>TBRe designs, builds and races a fully electric single-seater every year. Sign up here for the 2027 season.</p></div>
+      <p>TBRe designs, builds and races a fully electric single-seater every year. Kickoff is underway, and it's not too late to sign up for the 2027 season.</p></div>
     </div>
   </header>
   <div class="stripe" aria-hidden="true"></div>
@@ -249,7 +318,7 @@ const CONFIG = {
         <div class="field">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="ab1234@bath.ac.uk" required>
-          <p class="hint">Your Bath email is best. That's where the intro details go.</p>
+          <p class="hint">Your Bath email is best. That's where we'll send updates.</p>
           <p class="error">Enter a valid email address.</p>
         </div>
 
@@ -299,7 +368,7 @@ const CONFIG = {
             <label class="chip"><input type="checkbox" name="interest" value="Performance"><span>Performance</span></label>
             <label class="chip"><input type="checkbox" name="interest" value="Not sure yet"><span>Not sure yet</span></label>
           </div>
-          <p class="hint">Just to gauge interest for the taster sessions. Nothing binding, you can change your mind as many times as you like.</p>
+          <p class="hint">Just so the right subteam lead knows to say hello. Nothing binding, you can change your mind as many times as you like.</p>
         </fieldset>
 
         <button class="btn btn-gold" type="submit" id="submitBtn">Join TBRe</button>
@@ -316,7 +385,7 @@ const CONFIG = {
   <header class="thanks-head">
     <div class="wrap">
       <h1>You're in, <span id="firstName">welcome</span>.</h1>
-      <p>Two things to do now: join the WhatsApp so you don't miss anything, and come to the Intro Talk.</p>
+      <p id="thanksLede"></p>
     </div>
   </header>
   <div class="stripe" aria-hidden="true"></div>
@@ -327,28 +396,41 @@ const CONFIG = {
         <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-1 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
         Join the TBRe 27 WhatsApp
       </a>
-      <p class="small">All announcements, session reminders and room changes go there first.</p>
+      <p class="small">Announcements, meeting times and room changes all go there first.</p>
     </div>
   </section>
 
-  <section class="event">
+  <!-- Shown while there are still kickoff sessions to come -->
+  <section class="upcoming" id="upcoming" hidden>
     <div class="wrap">
-      <h2>Come to the Intro Talk</h2>
-      <div class="event-card">
-        <p class="when" id="introWhen"></p>
-        <p class="where" id="introWhere"></p>
-        <p>An introduction to what TBRe is and how the year runs, a chance to meet the subteam leads, and open Q&amp;A at the end. No experience needed, any course, any year.</p>
-        <div class="actions">
-          <a class="btn btn-navy" id="icsLink" href="#" download="TBRe-Intro-Talk.ics">Add to calendar</a>
-        </div>
-      </div>
+      <h2>Still coming up</h2>
+      <p class="lede" id="upcomingLede"></p>
+      <ol class="sess" id="sessionList"></ol>
+      <p class="all"><a class="btn btn-line" id="icsAll" href="#" download="TBRe-Kickoff-Sessions.ics">Add these to my calendar</a></p>
+    </div>
+  </section>
 
-      <div class="sessions">
-        <h3>Then five taster sessions, one per subteam</h3>
-        <ol id="sessionList"></ol>
-        <p style="margin:1rem 0 0"><a class="btn btn-line" id="icsAll" href="#" download="TBRe-Taster-Sessions.ics" style="font-size:.95rem;padding:.7rem 1rem">Add all six to calendar</a></p>
-        <p class="note">Come to as many as you like. Subteam onboarding starts after the tasters.</p>
+  <!-- Shown once every kickoff session has finished -->
+  <section class="upcoming" id="finished" hidden>
+    <div class="wrap">
+      <h2>Kickoff's finished, but you're not too late</h2>
+      <p class="lede">The taster sessions have wrapped up and subteams are getting stuck in. Plenty of people join from here. To get involved:</p>
+      <div class="done-card">
+        <ol>
+          <li><strong>Join the WhatsApp</strong> (button above). Weekly meetings and anything new are announced there.</li>
+          <li><strong>Message a subteam lead</strong> below. Say which area you're interested in and they'll tell you where to turn up.</li>
+          <li><strong>Not sure which subteam?</strong> Message any of them, or just ask in the WhatsApp. We'll point you the right way.</li>
+        </ol>
       </div>
+    </div>
+  </section>
+
+  <section class="leads" id="leads">
+    <div class="wrap-wide">
+      <h2>Who's who</h2>
+      <p class="lede">Got a question, or want to get involved in something specific? Message the right person directly on Teams. Tap the button and a chat opens with a starter message you can edit.</p>
+      <div id="leadGroups"></div>
+      <p class="note" id="teamsNote" hidden>Teams not opening? Search their username in Teams, or email <em>username</em>@bath.ac.uk.</p>
     </div>
   </section>
 
@@ -390,16 +472,20 @@ const CONFIG = {
     <div class="wrap">
       <h2>Questions people ask</h2>
       <details>
+        <summary>I missed the Intro Talk / some tasters. Is that a problem?</summary>
+        <p>Not at all. Join the WhatsApp and message the lead of whichever subteam interests you. They'll catch you up and tell you where to be.</p>
+      </details>
+      <details>
         <summary>Can I join with no experience?</summary>
         <p>Yes. We expect no prior knowledge. We're here to teach you and help you along, as long as you're proactive and motivated.</p>
       </details>
       <details>
         <summary>I'm not doing an engineering degree. Can I still join?</summary>
-        <p>Yes. We have students from every course, from chemical engineering to biology to management. Come to the taster sessions, see what interests you, talk to the leads and we'll find the right role for you.</p>
+        <p>Yes. We have students from every course, from chemical engineering to biology to management. Talk to the leads and we'll find the right role for you.</p>
       </details>
       <details>
         <summary>How do I get involved?</summary>
-        <p>Come to the taster sessions and the weekly meetings, keep an eye on the WhatsApp for announcements, and put your hand up when the team needs help. The more we see you in lectures and lab tasks, the more we get to know you.</p>
+        <p>Come to any remaining taster sessions and the weekly meetings, keep an eye on the WhatsApp for announcements, and message a subteam lead. The more we see you, the more we get to know you.</p>
       </details>
       <details>
         <summary>How much time does it take?</summary>
@@ -408,10 +494,6 @@ const CONFIG = {
       <details>
         <summary>Is there a membership fee?</summary>
         <p>No.</p>
-      </details>
-      <details>
-        <summary>Do I need to be in a subteam from day one?</summary>
-        <p>No. Tasters run through mid October, then you pick a subteam and onboarding starts.</p>
       </details>
       <details>
         <summary>Can I join later in the year?</summary>
@@ -447,6 +529,11 @@ const CONFIG = {
   const form = document.getElementById('joinForm');
   const btn = document.getElementById('submitBtn');
   const status = document.getElementById('formStatus');
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // "Now". Add ?now=2026-10-16T12:00 to the URL to preview the page as it will look on another date.
+  const nowParam = new URLSearchParams(location.search).get('now');
+  const NOW = nowParam ? new Date(nowParam) : new Date();
 
   function validate(){
     let ok = true;
@@ -503,13 +590,10 @@ const CONFIG = {
     document.getElementById('signup').style.display = 'none';
     document.getElementById('thanks').style.display = 'block';
     window.scrollTo({top:0, behavior:'instant'});
-    history.replaceState(null, '', '#welcome');
+    history.replaceState(null, '', location.search + '#welcome');
   }
 
-  // Populate thank-you links from CONFIG
-  const i = CONFIG.intro;
-  document.getElementById('introWhen').textContent = `${i.date}, ${i.time}`;
-  document.getElementById('introWhere').textContent = i.room;
+  // Footer + WhatsApp links from CONFIG
   document.getElementById('waLink').href = CONFIG.whatsapp;
   document.getElementById('siteLink').href = CONFIG.website;
   document.querySelectorAll('.logo-link').forEach(a => a.href = CONFIG.website);
@@ -517,34 +601,112 @@ const CONFIG = {
   document.getElementById('liLink').href = CONFIG.linkedin;
   document.getElementById('mailLink').href = 'mailto:' + CONFIG.email;
 
-  const title = 'TBRe Intro Talk';
-  const desc = 'Team Bath Racing Electric recruitment intro talk. ' + CONFIG.website;
-  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN','BEGIN:VEVENT',
-    'UID:tbre-intro-2026-v2@teambathracingelectric.com','DTSTAMP:'+i.startISO,'DTSTART:'+i.startISO,'DTEND:'+i.endISO,
-    'SUMMARY:'+title,'LOCATION:'+i.room,'DESCRIPTION:'+desc,'END:VEVENT','END:VCALENDAR'].join('\r\n');
-  document.getElementById('icsLink').href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  /* ---------- Kickoff sessions ---------- */
+  // UK local time to a real Date. BST (UTC+1) until the last Sunday of October, GMT after.
+  function ukDate(date, hm){
+    const [y,mo,d] = date.split('-').map(Number), [h,m] = hm.split(':').map(Number);
+    const lastSunOct = 31 - new Date(Date.UTC(y,9,31)).getUTCDay();
+    const bst = mo > 3 && (mo < 10 || (mo === 10 && d < lastSunOct));
+    return new Date(Date.UTC(y, mo-1, d, h - (bst ? 1 : 0), m));
+  }
+  const stamp = dt => dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z');
+  const desc = 'Team Bath Racing Electric kickoff session. ' + CONFIG.website;
+  function vevent(uid,s,e,summary,loc){
+    return ['BEGIN:VEVENT','UID:'+uid,'DTSTAMP:'+stamp(new Date()),'DTSTART:'+stamp(s),'DTEND:'+stamp(e),'SUMMARY:'+summary,'LOCATION:'+loc,'DESCRIPTION:'+desc,'END:VEVENT'].join('\r\n');
+  }
+  const icsFile = evs => 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN',...evs,'END:VCALENDAR'].join('\r\n'));
 
-  // Taster sessions list + per-session calendar files
-  function toUTC(date, hm){ // UK local (BST, UTC+1) to ICS UTC stamp
-    const [h,m]=hm.split(':').map(Number);
-    const d=new Date(Date.UTC(+date.slice(0,4),+date.slice(5,7)-1,+date.slice(8,10),h-1,m));
-    return d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z');
+  const sessions = CONFIG.sessions.map((x,n) => ({...x, n, s:ukDate(x.date,x.start), e:ukDate(x.date,x.end)}));
+  const remaining = sessions.filter(x => x.e > NOW);
+  const lastSession = sessions[sessions.length-1];
+
+  // Monday-to-Sunday week containing NOW (local)
+  const wk0 = new Date(NOW); wk0.setHours(0,0,0,0); wk0.setDate(wk0.getDate() - ((wk0.getDay()+6)%7));
+  const wk1 = new Date(wk0); wk1.setDate(wk1.getDate()+7);
+  const sameDay = (a,b) => a.toDateString() === b.toDateString();
+  const fmtDay = d => d.toLocaleDateString('en-GB',{weekday:'long', day:'numeric', month:'long', timeZone:'Europe/London'});
+
+  const lede = document.getElementById('thanksLede');
+  if (remaining.length){
+    const started = sessions[0].s < NOW;
+    lede.innerHTML = (started
+      ? "We've already started our kickoff sessions this semester, but <strong>don't worry, you haven't missed out.</strong> "
+      : "Kickoff is about to start. ")
+      + "Join the WhatsApp, then come along to whatever's still coming up.";
+
+    const thisWeek = remaining.filter(x => x.s < wk1).length;
+    document.getElementById('upcomingLede').textContent =
+      (thisWeek === remaining.length && thisWeek > 0
+        ? "Here's what's on this week. "
+        : "")
+      + (remaining.includes(lastSession)
+        ? fmtDay(lastSession.s) + " is the last one, so catch at least one if you can. No sign-up needed, just turn up."
+        : "No sign-up needed, just turn up.");
+
+    const list = document.getElementById('sessionList');
+    remaining.forEach(x => {
+      const ev = vevent('tbre-kickoff-'+x.n+'-2026@teambathracingelectric.com', x.s, x.e, 'TBRe: '+x.title, x.room);
+      const tags = [];
+      if (sameDay(x.s, NOW)) tags.push('<span class="tag tag-today">Today</span>');
+      else if (x.s < wk1) tags.push('<span class="tag tag-week">This week</span>');
+      if (x === lastSession) tags.push('<span class="tag tag-last">Last one</span>');
+      const p = s => x.s.toLocaleDateString('en-GB',{...s, timeZone:'Europe/London'});
+      const li = document.createElement('li');
+      li.innerHTML =
+        '<div class="date" aria-hidden="true"><span class="dow">'+p({weekday:'short'})+'</span><span class="dom">'+p({day:'numeric'})+'</span><span class="mon">'+p({month:'short'})+'</span></div>'
+        + '<div>' + (tags.length ? '<p class="tags">'+tags.join('')+'</p>' : '')
+        + '<h3>'+esc(x.title)+'</h3>'
+        + '<p class="meta"><span class="sr">'+esc(x.label)+', </span>'+esc(x.start)+' to '+esc(x.end)+' &middot; '+esc(x.room)+'</p>'
+        + '<a class="cal" href="'+icsFile([ev])+'" download="TBRe-'+x.title.replace(/[^A-Za-z]+/g,'-')+'.ics">Add to calendar</a></div>';
+      list.appendChild(li);
+    });
+    const allLink = document.getElementById('icsAll');
+    if (remaining.length > 1){
+      allLink.href = icsFile(remaining.map(x => vevent('tbre-kickoff-'+x.n+'-2026@teambathracingelectric.com', x.s, x.e, 'TBRe: '+x.title, x.room)));
+    } else {
+      allLink.parentElement.remove();
+    }
+    document.getElementById('upcoming').hidden = false;
+  } else {
+    lede.innerHTML = "Our kickoff sessions have finished for this semester, but <strong>it's not too late to get involved.</strong> Join the WhatsApp and message someone from the team below.";
+    document.getElementById('finished').hidden = false;
   }
-  function vevent(uid,start,end,summary,location){
-    return ['BEGIN:VEVENT','UID:'+uid,'DTSTAMP:'+start,'DTSTART:'+start,'DTEND:'+end,'SUMMARY:'+summary,'LOCATION:'+location,'DESCRIPTION:'+desc,'END:VEVENT'].join('\r\n');
-  }
-  function icsFile(events){ return 'data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TBRe//Join//EN',...events,'END:VCALENDAR'].join('\r\n')); }
-  const list=document.getElementById('sessionList');
-  const all=[vevent('tbre-intro-2026-v2@teambathracingelectric.com',i.startISO,i.endISO,title,i.room)];
-  CONFIG.sessions.forEach((x,n)=>{
-    const st=toUTC(x.date,x.start), en=toUTC(x.date,x.end);
-    const ev=vevent('tbre-taster-'+n+'-2026@teambathracingelectric.com',st,en,'TBRe taster: '+x.title,x.room);
-    all.push(ev);
-    const li=document.createElement('li');
-    li.innerHTML='<span class="d">'+x.label+'</span><span class="t"><strong>'+x.title.replace('&','&amp;')+'</strong><br>'+x.room+', '+x.start+' to '+x.end+'<br><a href="'+icsFile([ev])+'" download="TBRe-'+x.title.replace(/[^A-Za-z]+/g,'-')+'.ics">Add to calendar</a></span>';
-    list.appendChild(li);
+
+  /* ---------- Who's who ---------- */
+  const groupsEl = document.getElementById('leadGroups');
+  const initials = n => n.split(/\s+/).filter(Boolean).map(w => w[0]).filter((c,i,a) => i===0 || i===a.length-1).join('').toUpperCase();
+  let anyCode = false;
+  const starters = [];
+  CONFIG.leadGroups.forEach(g => {
+    const sec = document.createElement('div');
+    sec.className = 'lead-group';
+    sec.innerHTML = '<h3>'+esc(g.title)+'</h3>';
+    const ul = document.createElement('ul');
+    ul.className = 'lead-grid';
+    g.leads.forEach(l => {
+      if (l.start) starters.push(l);
+      const code = (l.code || '').trim().toLowerCase();
+      const li = document.createElement('li');
+      li.className = 'lead-card tone-' + (l.tone || 'navy');
+      let html = '<div class="av" aria-hidden="true">'+esc(initials(l.name))+'</div>'
+        + '<div class="who"><span class="name">'+esc(l.name)+'</span><span class="role">'+esc(l.role)+'</span>'
+        + (code ? '<code>'+esc(code)+'</code>' : '') + '</div>';
+      if (code){
+        anyCode = true;
+        const msg = "Hi " + l.name.split(' ')[0] + ", I've just signed up to TBRe and I'd like to get involved. What's the best way to get started?";
+        const href = 'https://teams.microsoft.com/l/chat/0/0?users=' + encodeURIComponent(code + '@' + CONFIG.uniDomain) + '&message=' + encodeURIComponent(msg);
+        html += '<a class="btn btn-teams" href="'+href+'" target="_blank" rel="noopener" aria-label="Message '+esc(l.name)+' on Teams">'
+          + '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 12H5.2L4 16.2V5h16v10z"/></svg>'
+          + 'Message on Teams</a>';
+      }
+      li.innerHTML = html;
+      ul.appendChild(li);
+    });
+    sec.appendChild(ul);
+    groupsEl.appendChild(sec);
   });
-  document.getElementById('icsAll').href=icsFile(all);
+  document.getElementById('teamsNote').hidden = !anyCode;
+  const firstName = l => l.name.split(' ')[0];
 
   // "Not sure yet" clears the others, and vice versa
   form.querySelectorAll('input[name=interest]').forEach(cb => cb.addEventListener('change', () => {
