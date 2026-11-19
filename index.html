@@ -35,16 +35,15 @@ const CONFIG = {
   ],
   // Who's who, grouped as on the TBRe 27 team slides. "code" is the Bath username (e.g. ab1234),
   // which becomes ab1234@bath.ac.uk for the "Message on Teams" button. Leave code empty and the
-  // person still shows, just without the button. tone sets the avatar colour: navy, orange, gold, black.
-  // start:"Area" puts them in the "Not sure who to message?" line.
-  
+  // person still shows, just without the button. The code is never shown on the page; the Teams
+  // link is only built when someone taps the button. tone sets the avatar colour: navy, orange, gold, black.
   leadGroups: [
     { title:"Technical Team", leads:[
-      { name:"Ibraheem Rodrigues", role:"Technical Director",          code:"ir422", tone:"navy" },
-      { name:"Khayaam Waris",      role:"Chief Engineer / Aero Lead",  code:"kw848", tone:"navy" },
+      { name:"Ibraheem Rodrigues", role:"Technical Director",          code:"ir422",  tone:"navy" },
+      { name:"Khayaam Waris",      role:"Chief Engineer / Aero Lead",  code:"kw848",  tone:"navy" },
       { name:"Miles Dawson",       role:"Head of Test",                code:"md2328", tone:"navy" },
-      { name:"Oliver Zilli",       role:"Inboard (Mech) Lead",         code:"oz228", tone:"navy" },
-      { name:"Ola Werring",        role:"Outboard (Mech) Lead",        code:"ofw25", tone:"navy" },
+      { name:"Oliver Zilli",       role:"Inboard (Mech) Lead",         code:"oz228",  tone:"navy" },
+      { name:"Ola Werring",        role:"Outboard (Mech) Lead",        code:"ofw25",  tone:"navy" },
       { name:"Ellie Harrington",   role:"Systems Lead",                code:"th2226", tone:"navy" },
       { name:"Alex Cucchiara",     role:"Electronics Lead",            code:"ac3499", tone:"navy" },
       { name:"Jake Stewart",       role:"Controls Lead",               code:"js3910", tone:"navy" },
@@ -54,17 +53,17 @@ const CONFIG = {
       { name:"James Cicigoi",      role:"Lead ESO",                    code:"jc3908", tone:"navy" }
     ]},
     { title:"Leadership, AI & Business", leads:[
-      { name:"Vincent Morel Cavailhes", role:"Team Principal / Finance",                        code:"vc466", tone:"black"  },
+      { name:"Vincent Morel Cavailhes", role:"Team Principal / Finance",                        code:"vc466",  tone:"black"  },
       { name:"James Morris",            role:"TBReAI Director",                                 code:"jm3339", tone:"orange" },
-      { name:"Sara Alkhalili",          role:"Technical Coordinator / Mechanical Subteam Lead", code:"sa3257", tone:"orange", start:"Mechanical" },
-      { name:"Ryan Vickery",            role:"Software Subteam Lead",                           code:"rev21", tone:"orange", start:"Software" },
-      { name:"Panteha Asadi",           role:"Electrical Subteam Lead",                         code:"pa838", tone:"orange", start:"Electrical" },
-      { name:"Oli Sargent",             role:"Business Director / Head of Business",            code:"os700", tone:"gold",   start:"Business & Marketing" },
-      { name:"Emma Dickson",            role:"Head of BPP",                                     code:"ed809", tone:"gold" },
-      { name:"Elisabet Pawlenko",       role:"Head of Marketing",                               code:"ep2252", tone:"gold" },
-      { name:"Toby Hirsch",              role:"Head of Sponsorship",                            code:"th2290", tone:"gold" },
-      { name:"Audrey Raguin",           role:"Head of Events & Outreach",                       code:"ar2914", tone:"gold" },
-      { name:"Anna Sanchez",            role:"Head of Branding & Creative",                     code:"ajs383", tone:"gold" }
+      { name:"Sara Alkhalili",          role:"Technical Coordinator / Mechanical Subteam Lead", code:"sa3257", tone:"orange" },
+      { name:"Ryan Vickery",            role:"Software Subteam Lead",                           code:"rev21",  tone:"orange" },
+      { name:"Panteha Asadi",           role:"Electrical Subteam Lead",                         code:"pa838",  tone:"orange" },
+      { name:"Oli Sargent",             role:"Business Director / Head of Business",            code:"os700",  tone:"gold"   },
+      { name:"Emma Dickson",            role:"Head of BPP",                                     code:"ed809",  tone:"gold"   },
+      { name:"Elisabet Pawlenko",       role:"Head of Marketing",                               code:"ep2252", tone:"gold"   },
+      { name:"Toby Hirsch",             role:"Head of Sponsorship",                             code:"th2290", tone:"gold"   },
+      { name:"Audrey Raguin",           role:"Head of Events & Outreach",                       code:"ar2914", tone:"gold"   },
+      { name:"Anna Sanchez",            role:"Head of Branding & Creative",                     code:"ajs383", tone:"gold"   }
     ]}
   ],
   uniDomain: "bath.ac.uk",
@@ -214,8 +213,6 @@ const CONFIG = {
   /* leads */
   .leads{padding:2rem 0 3rem}
   .leads .lede{color:var(--ink-soft);margin-bottom:1rem;max-width:60ch}
-  .start-here{background:var(--white);border-left:6px solid var(--gold);border-radius:var(--radius);padding:1rem 1.25rem;margin:0 0 2rem;max-width:60ch}
-  .start-here p{margin:0}
   .lead-group{margin:0 0 2rem}
   .lead-group h3{font-size:1.2rem;color:var(--navy);margin:0 0 .75rem;padding-bottom:.4rem;border-bottom:3px solid var(--gold);display:inline-block}
   .lead-grid{list-style:none;margin:0;padding:0;display:grid;gap:.65rem;grid-template-columns:1fr}
@@ -238,7 +235,6 @@ const CONFIG = {
   .tone-navy .role{color:#0B4EA2}
   .tone-orange .role{color:#B5441A}
   .tone-gold .role{color:#7A5B05}
-  .lead-card code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:var(--ink-soft)}
   .btn-teams{grid-column:2;justify-self:start;background:var(--teams);color:var(--white);font-size:.85rem;padding:.45rem .75rem;margin-top:-.25rem}
   .btn-teams:hover{background:#4A4EB0}
   .leads .note{font-size:.9rem;color:var(--ink-soft);margin:0}
@@ -430,7 +426,7 @@ const CONFIG = {
       <h2>Who's who</h2>
       <p class="lede">Got a question, or want to get involved in something specific? Message the right person directly on Teams. Tap the button and a chat opens with a starter message you can edit.</p>
       <div id="leadGroups"></div>
-      <p class="note" id="teamsNote" hidden>Teams not opening? Search their username in Teams, or email <em>username</em>@bath.ac.uk.</p>
+      <p class="note" id="teamsNote" hidden>Teams not opening? Make sure you're signed in to Teams with your Bath account, then search their name.</p>
     </div>
   </section>
 
@@ -676,7 +672,6 @@ const CONFIG = {
   const groupsEl = document.getElementById('leadGroups');
   const initials = n => n.split(/\s+/).filter(Boolean).map(w => w[0]).filter((c,i,a) => i===0 || i===a.length-1).join('').toUpperCase();
   let anyCode = false;
-  const starters = [];
   CONFIG.leadGroups.forEach(g => {
     const sec = document.createElement('div');
     sec.className = 'lead-group';
@@ -684,30 +679,31 @@ const CONFIG = {
     const ul = document.createElement('ul');
     ul.className = 'lead-grid';
     g.leads.forEach(l => {
-      if (l.start) starters.push(l);
       const code = (l.code || '').trim().toLowerCase();
       const li = document.createElement('li');
       li.className = 'lead-card tone-' + (l.tone || 'navy');
       let html = '<div class="av" aria-hidden="true">'+esc(initials(l.name))+'</div>'
         + '<div class="who"><span class="name">'+esc(l.name)+'</span><span class="role">'+esc(l.role)+'</span>'
-        + (code ? '<code>'+esc(code)+'</code>' : '') + '</div>';
+        + '</div>';
       if (code){
         anyCode = true;
-        const msg = "Hi " + l.name.split(' ')[0] + ", I've just signed up to TBRe and I'd like to get involved. What's the best way to get started?";
-        const href = 'https://teams.microsoft.com/l/chat/0/0?users=' + encodeURIComponent(code + '@' + CONFIG.uniDomain) + '&message=' + encodeURIComponent(msg);
-        html += '<a class="btn btn-teams" href="'+href+'" target="_blank" rel="noopener" aria-label="Message '+esc(l.name)+' on Teams">'
+        html += '<a class="btn btn-teams" href="https://teams.microsoft.com/" target="_blank" rel="noopener" aria-label="Message '+esc(l.name)+' on Teams">'
           + '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 12H5.2L4 16.2V5h16v10z"/></svg>'
           + 'Message on Teams</a>';
       }
       li.innerHTML = html;
+      const tb = li.querySelector('.btn-teams');
+      if (tb) tb.addEventListener('click', e => {
+        e.preventDefault();
+        const msg = "Hi " + l.name.split(' ')[0] + ", I've just signed up to TBRe and I'd like to get involved. What's the best way to get started?";
+        window.open('https://teams.microsoft.com/l/chat/0/0?users=' + encodeURIComponent(code + '@' + CONFIG.uniDomain) + '&message=' + encodeURIComponent(msg), '_blank', 'noopener');
+      });
       ul.appendChild(li);
     });
     sec.appendChild(ul);
     groupsEl.appendChild(sec);
   });
   document.getElementById('teamsNote').hidden = !anyCode;
-  const firstName = l => l.name.split(' ')[0];
-
   // "Not sure yet" clears the others, and vice versa
   form.querySelectorAll('input[name=interest]').forEach(cb => cb.addEventListener('change', () => {
     if (!cb.checked) return;
